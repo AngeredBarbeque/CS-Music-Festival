@@ -2,50 +2,78 @@
 
 #Alex Anderson, Music Festival Pseudocode
 
+
+
 #store tickets function
 def store_tickets():
     ticket_list = ['','','']
 #have ticket types be equal to Seated, Vip, Grass
-    remaining_options = ["seated,", "vip,", "grass"]
+    remaining_options = ["seated", "vip", "grass"]
+
+
 #have a while true loop, a placement for continues to go back to
     while True:
-        try: 
 #ticket_type equals an input asking what they want to store, out of the ticket types, Tickets.
-            ticket_type = input("What ticket type do you want to store,", remaining_options[0], remaining_options[1], "or", remaining_options[2])
+        try: 
+            ticket_type = input("What ticket type do you want to store:", remaining_options[0], "or", remaining_options[1], "or", remaining_options[2])
         except:
             try:
-                ticket_type = input("What ticket type do you want to store,", remaining_options[0], "or", remaining_options[1])
+                ticket_type = input("What ticket type do you want to store:", remaining_options[0], "or", remaining_options[1])
             except:
-                print("You are now storing,", remaining_options[0], "tickets.")
+                print("You are now storing:", remaining_options[0], "tickets.")
                 ticket_type = remaining_options[0]
+
+#just making sure that they did a real ticket type
+        if ticket_type != "seated" and ticket_type != "vip" and ticket_type != "grass":
+            print("invalid input")
+            continue
+
 #have an input asking what is the amount of 1-day tickets of this type that were bought. 
         one_day_ticket_amount = input("What is the amount of 1-day tickets of this type that were bought?: ")
+
 #have an input asking what is the amount of 2-day tickets of this type that were bought. 
         two_day_ticket_amount = input("What is the amount of 2-day tickets of this type that were bought?: ")
+
 #combine ticket_type, one_day_tickets, and 2_day_tickets into a list
         type_tickets = [ticket_type, one_day_ticket_amount, two_day_ticket_amount]
+
+
 #If ticket_type is equal to Seated have it be put in position 0 in ticket_list and remove Seated from ticket types
         if ticket_type == "seated":
-            remaining_options.pop("seated,")
+            remaining_options.pop(remaining_options.index("seated"))
             ticket_list[0] = type_tickets
+
 #If ticket_type is equal to VIP have it be put in position 1 in ticket_list and remove VIP from ticket types
         if ticket_type == "vip":
+            remaining_options.pop(remaining_options.index("vip"))
             ticket_list[1] = type_tickets
+
 #If ticket_type is equal to Grass have it be put in position 2 in ticket_list and remove Grass from ticket types
         if ticket_type == "grass":
+            remaining_options.pop(remaining_options.index("grass"))
             ticket_list[2] = type_tickets
+
 #If the ticket type is not equal to empty, continue back to the beginning of while true loop
-        if remaining_options:...
-#Return ticket_list and go to the edit tickets function next        
-
-
+        if remaining_options != []:
+            continue
 
 
 
 # edit tickets function
+def edit_tickets():
 # have a while true loop, a placement for continues to go back to
+    while True:
 # have ticket_type be equal to an input asking what they want to store out of Seated, Vip, or Grass Tickets.
+        ticket_type = input("What ticket type do you want to change: seated, vip or grass")
+
+#just making sure that they did a real ticket type
+        if ticket_type != "seated" and ticket_type != "vip" and ticket_type != "grass":
+            print("invalid input")
+            continue
+
 # have an input asking what amount of one-day tickets of this type were removed/added? 
+        one_day_change_amount = input("What is the amount of 1-day tickets of this type that were removed/added?: ")
+        
 # If ticket_type is equal to Seated, have input be added to position 1 in position 0 of the ticket list
 # If ticket_type is equal to VIP, have input be added to position 1 in position 1 the ticket list
 # If ticket_type is equal to Grass, have input be added to position 1 in position 2 of the ticket list
