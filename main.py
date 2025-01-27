@@ -56,11 +56,12 @@ def store_tickets():
 #If the ticket type is not equal to empty, continue back to the beginning of while true loop
         if remaining_options != []:
             continue
+        return ticket_list
 
 
 
 # edit tickets function
-def edit_tickets():
+def edit_tickets(ticket_list):
 # have a while true loop, a placement for continues to go back to
     while True:
 # have ticket_type be equal to an input asking what they want to store out of Seated, Vip, or Grass Tickets.
@@ -73,10 +74,19 @@ def edit_tickets():
 
 # have an input asking what amount of one-day tickets of this type were removed/added? 
         one_day_change_amount = input("What is the amount of 1-day tickets of this type that were removed/added?: ")
-        
+
 # If ticket_type is equal to Seated, have input be added to position 1 in position 0 of the ticket list
+        if ticket_type == "seated": 
+            ticket_list[0][1] += one_day_change_amount
+            
 # If ticket_type is equal to VIP, have input be added to position 1 in position 1 the ticket list
+        if ticket_type == "vip": 
+            ticket_list[1][1] += one_day_change_amount
+
 # If ticket_type is equal to Grass, have input be added to position 1 in position 2 of the ticket list
+        if ticket_type == "grass": 
+            ticket_list[2][1] += one_day_change_amount
+
 # Input asking what amount of two-day tickets of this type were removed/added. 
 # If ticket_type is equal to Seated, have input be added to position 2 in position 0 of the ticket list
 # If ticket_type is equal to VIP, have input be added to position 2 in position 1 of the ticket list
