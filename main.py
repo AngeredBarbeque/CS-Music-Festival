@@ -56,6 +56,7 @@ def store_tickets():
 #If the ticket type is not equal to empty, continue back to the beginning of while true loop
         if remaining_options != []:
             continue
+            
         return ticket_list
 
 
@@ -72,38 +73,64 @@ def edit_tickets(ticket_list):
             print("invalid input")
             continue
 
-# have an input asking what amount of one-day tickets of this type were removed/added? 
+# have an input asking what amount of one-day and two-day tickets of this type were removed/added? 
         one_day_change_amount = input("What is the amount of 1-day tickets of this type that were removed/added?: ")
-
-# If ticket_type is equal to Seated, have input be added to position 1 in position 0 of the ticket list
+        two_day_change_amount = input("What is the amount of 2-day tickets of this type that were removed/added?: ")
+        
+# If ticket_type is equal to Seated, have inputs be added to position 1 and 2 in position 0 of the ticket list
         if ticket_type == "seated": 
             ticket_list[0][1] += one_day_change_amount
+            ticket_list[0][2] += two_day_change_amount
             
-# If ticket_type is equal to VIP, have input be added to position 1 in position 1 the ticket list
+# If ticket_type is equal to VIP, have inputs be added to position 1 and 2 in position 1 the ticket list
         if ticket_type == "vip": 
             ticket_list[1][1] += one_day_change_amount
+            ticket_list[1][2] += two_day_change_amount
 
-# If ticket_type is equal to Grass, have input be added to position 1 in position 2 of the ticket list
+# If ticket_type is equal to Grass, have inputs be added to position 1 and 2 in position 2 of the ticket list
         if ticket_type == "grass": 
             ticket_list[2][1] += one_day_change_amount
+            ticket_list[2][2] += two_day_change_amount
 
-# Input asking what amount of two-day tickets of this type were removed/added. 
-# If ticket_type is equal to Seated, have input be added to position 2 in position 0 of the ticket list
-# If ticket_type is equal to VIP, have input be added to position 2 in position 1 of the ticket list
-# If ticket_type is equal to Grass, have input be added to position 2 in position 2 of the ticket list
 # input asking if they want to change any other ticket amounts
+        change_ticket_amounts = input("Do you want to change any other ticket amounts? (yes or no): ")
+        
 # if the input is equal to yes, continue back to the beginning of while true loop
+        if change_ticket_amounts == "yes":
+            continue
+        
 # Return ticket_list and go to the store_attendee function next
+        return ticket_list
 
 
+        
 # store attendee function
+def store_attendee():
+    
 # have total_seated_tickets equal to ticket_list(position 1 in position 0) + ticket_list(position 2 in position 0)
+    total_seated_tickets = ticket_list[0][1] + ticket_list[0][2]
+    
 # have total_VIP_tickets equal to ticket_list(position 1 in position 1)+ ticket_list(position 2 in position 1)
+    total_vip_tickets = ticket_list[1][1] + ticket_list[1][2]
+
 # have total_grass_tickets equal to ticket_list(position 1 in position 2)+ ticket_list(position 2 in position 2) 
+    total_grass_tickets = ticket_list[2][1] + ticket_list[2][2]
+
 # have total_tickets equal to total_grass_tickets + total_VIP_tickets + total_seated_tickets 
+    total_tickets = [total_grass_tickets + total_vip_tickets + total_seated_tickets, total_grass_tickets, total_vip_tickets, total_grass_tickets]
+
 # have attende_types equal to female, male
+    attende_types = ["female", "male"]
+
 # have a while true loop, a placement for continues to go back to
+    while True:
 # have gender_type be equal to an input asking if they want to store, out of the attende_types, attendees
+        try:
+            gender_type = input("do you want to store", attende_types[0], "or", attende_types[1], "attendes?: ")
+        except:
+            print("You are storing", attende_types[0], "attendes.")
+            gender_type = attende_types[0]
+            
 # remove gender_type from attende_types
 # have under_18 equal to an input asking what was the amount of (gender_type) ages 18 and under that went?
 # have over_18 equal to an input asking what was the amount of (gender_type) ages 19-49 that went?
