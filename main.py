@@ -92,4 +92,30 @@ def venues(stages):
             #main()
             break
         else:
-            CONTINUE HERE
+            print("Sorry, enter 1, 2, 3, or 4 to continue.")
+            continue
+
+#Allows the user to access the other functions
+def main(stages):
+    print("Hello! Welcome to your music festival management system!")
+    while True:
+        choice = input("What would you like to do?\n1:Manages Artists\n2:Manage Schedules\n3:Manage Venue\n4:Manage Tickets\n5:Search for something\n6:Leave\nChoose:\n")
+        if choice == '1':
+            #artists()
+            break
+        elif choice == '2':
+            #schedules()
+            break
+        elif choice == '3':
+            venues()
+        elif choice == '4':
+            #tickets()
+            break
+        elif choice == '5':
+            #search()
+            break
+        elif choice == '6':
+            print("Goodbye!")
+            exit()
+        else:
+            print("Sorry, please enter 1, 2, 3, 4, 5, or 6.")
