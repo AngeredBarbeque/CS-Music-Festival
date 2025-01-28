@@ -122,7 +122,7 @@ def edit_tickets(ticket_list):
 
         
 # store attendee function
-def store_attendee():
+def store_attendee(ticket_list):
     
 # have total_seated_tickets equal to ticket_list(position 1 in position 0) + ticket_list(position 2 in position 0)
     total_seated_tickets = ticket_list[0][1] + ticket_list[0][2]
@@ -229,8 +229,3 @@ def store_attendee():
 # input asking if they want to find something else (yes or no)
 # if yes, continue back to beginning of while true loop
 # else, go to the main function
-
-    
-    
-        
-  
