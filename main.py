@@ -29,10 +29,18 @@ def store_tickets():
             continue
 
 #have an input asking what is the amount of 1-day tickets of this type that were bought. 
-        one_day_ticket_amount = input("What is the amount of 1-day tickets of this type that were bought?: ")
+        try:
+            one_day_ticket_amount = int(input("What is the amount of 1-day tickets of this type that were bought?: "))
+        except:
+            print("invalid input")
+            continue
 
-#have an input asking what is the amount of 2-day tickets of this type that were bought. 
-        two_day_ticket_amount = input("What is the amount of 2-day tickets of this type that were bought?: ")
+#have an input asking what is the amount of 2-day tickets of this type that were bought.
+        try:
+            two_day_ticket_amount = int(input("What is the amount of 2-day tickets of this type that were bought?: "))
+        except:
+            print("invalid input")
+            continue
 
 #combine ticket_type, one_day_tickets, and 2_day_tickets into a list
         type_tickets = [ticket_type, one_day_ticket_amount, two_day_ticket_amount]
@@ -74,9 +82,18 @@ def edit_tickets(ticket_list):
             continue
 
 # have an input asking what amount of one-day and two-day tickets of this type were removed/added? 
-        one_day_change_amount = input("What is the amount of 1-day tickets of this type that were removed/added?: ")
-        two_day_change_amount = input("What is the amount of 2-day tickets of this type that were removed/added?: ")
-        
+        try:
+            one_day_change_amount = int(input("What is the amount of 1-day tickets of this type that were removed/added?: "))
+        except:
+            print("invalid input")
+            continue
+
+        try:
+            two_day_change_amount = int(input("What is the amount of 2-day tickets of this type that were removed/added?: "))        
+        except:
+            print("invalid input")
+            continue
+            
 # If ticket_type is equal to Seated, have inputs be added to position 1 and 2 in position 0 of the ticket list
         if ticket_type == "seated": 
             ticket_list[0][1] += one_day_change_amount
@@ -93,7 +110,7 @@ def edit_tickets(ticket_list):
             ticket_list[2][2] += two_day_change_amount
 
 # input asking if they want to change any other ticket amounts
-        change_ticket_amounts = input("Do you want to change any other ticket amounts? (yes or no): ")
+        change_ticket_amounts = input("type yes if you want to change any other ticket amounts: ")
         
 # if the input is equal to yes, continue back to the beginning of while true loop
         if change_ticket_amounts == "yes":
@@ -131,8 +148,23 @@ def store_attendee():
             print("You are storing", attende_types[0], "attendes.")
             gender_type = attende_types[0]
             
+        if gender_type != "female" and gender_type != "male":
+            print("invalid input")
+            continue
+            
 # remove gender_type from attende_types
+        if gender_type == "female":
+            attende_types.pop(attende_types.index("female"))
+        if gender_type == "male":
+            attende_types.pop(attende_types.index("male"))
+        
 # have under_18 equal to an input asking what was the amount of (gender_type) ages 18 and under that went?
+        try:
+            under_18 = int(input("what is the amount of", gender_type, "ages 18 and under that went?: "))
+        except:
+            print("invalid input")
+            continue
+            
 # have over_18 equal to an input asking what was the amount of (gender_type) ages 19-49 that went?
 # have over_50 equal to an Input asking what was the amount of (gender_type) ages 50-79 that went?
 # have age_list equal to the combination of all the age variables into a list
