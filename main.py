@@ -83,11 +83,24 @@ def venues(stages):
         stage_display(stages)
         choice = input("Would you like to\n1:Add a stage\n2:Remove a stage\n3:Edit a stage\n4:Exit to main interface\nChoose:\n")
         if choice == '1':
-            stages.add(add_stage())
+            try:
+                stages.add(add_stage())
+            except:
+                pass
         elif choice == '2':
-            stages.remove(remove_stage())
+            try:
+                stages.remove(remove_stage())
+            except:
+                pass
         elif choice == '3':
-            stages.add(change_stage())
+            #Checks to avoid adding a non-existent item to the stages list
+            isNull = change_stage()
+            try:
+                isNull[0]
+            except:
+                pass
+            else:
+                stages.add(isNull)
         elif choice == '4':
             #main()
             break
@@ -119,3 +132,4 @@ def main(stages):
             exit()
         else:
             print("Sorry, please enter 1, 2, 3, 4, 5, or 6.")
+venues(stages)
