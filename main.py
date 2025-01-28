@@ -123,7 +123,8 @@ def edit_tickets(ticket_list):
         
 # store attendee function
 def store_attendee(ticket_list):
-    
+    attende_list = ['','']
+    attende_names = [[],[],[],[],[],[]]
 # have total_seated_tickets equal to ticket_list(position 1 in position 0) + ticket_list(position 2 in position 0)
     total_seated_tickets = ticket_list[0][1] + ticket_list[0][2]
     
@@ -158,6 +159,7 @@ def store_attendee(ticket_list):
         if gender_type == "male":
             attende_types.pop(attende_types.index("male"))
         
+
 # have under_18 equal to an input asking what was the amount of (gender_type) ages 18 and under that went?
         try:
             under_18 = int(input("what is the amount of", gender_type, "ages 18 and under that went?: "))
@@ -166,53 +168,164 @@ def store_attendee(ticket_list):
             continue
             
 # have over_18 equal to an input asking what was the amount of (gender_type) ages 19-49 that went?
+        try:
+            over_18 = int(input("what is the amount of", gender_type, "ages 18 to 49 that went?: "))
+        except:
+            print("invalid input")
+            continue
+
 # have over_50 equal to an Input asking what was the amount of (gender_type) ages 50-79 that went?
+        try:
+            over_50 = int(input("what is the amount of", gender_type, "ages 50 and older that went?: "))
+        except:
+            print("invalid input")
+            continue
+
+
 # have age_list equal to the combination of all the age variables into a list
+        age_list = [under_18, over_18, over_50]
+
 # have gender_seated_amount equal to an input asking what was the amount of Seated (gender_type).
+        gender_seated_amount = int(input("what is the amount of seated", gender_type))
+
 # have gender_VIP_amount equal to an input asking what was the amount of VIP (gender_type).
+        gender_vip_amount = int(input("what is the amount of vip", gender_type))
+
 # have gender_grass_amount equal to an input asking what was the amount of grass (gender_type).
+        gender_grass_amount = int(input("what is the amount of grass-seated", gender_type))
+
 # have area_amounts equal to gender_seated_amount, gender_VIP_amount, gender_grass_amount 
+        area_amounts = [gender_seated_amount, gender_vip_amount, gender_grass_amount]
+
+
 # if gender_type equals female: have total_female equal to area_amount[position 0] + area_amount[position 1] + area_amount[position 2]
-# if gender_type equals male: have total_male equal to area_amount[position 0] + area_amount[position 1] + area_amount[position 2]
 # if gender_type equals female: have attende_list[position 0] equal to total_female, area_amounts, age_list
+        if gender_type == "female":
+            total_female_areas = area_amounts[0] + area_amounts[1] + area_amounts[2]
+            attende_list[0] = [total_female_areas, area_amounts, age_list]
+
+# if gender_type equals male: have total_male equal to area_amount[position 0] + area_amount[position 1] + area_amount[position 2]
 # if gender_type equals male: have attende_list[position 1] equal to total_male, area_amounts, age_list
+        if gender_type == "male":
+            total_male_areas = area_amounts[0] + area_amounts[1] + area_amounts[2]
+            attende_list[1] = [total_male_areas, area_amounts, age_list]
+
 # If attende_types is not empty, continue back to beginning of while true loop
+        if attende_types != []:
+            continue
+
 # if total_female + total_male > total_tickets, print that they had too many people and continue
+        if total_female_areas + total_male_areas != total_tickets:
+            attende_types = ["female", "male"]
+            print("You had not the same amount of people as your total tickets amount!")
+            continue
+
+
 # for number in range(attende_list[position 0][position 1][position 0]):
 # input asking what the name of a woman in seated:
 # add the input to position 0 in attende_names
+        for number in range(attende_list[0][1][0]):
+            person_name = input("What is the name of a woman in seated?: ")
+
+            while True:
+                try:
+                    person_age = int(input("What is the age of that women?: "))
+                    attende_names[0] += [person_name, person_age]
+                except:
+                    print("invalid input")
+                    continue
+
 # for number in range(attende_list[position 0][position 1][position 1]):
 # input asking what is the name of a woman in VIP:
 # add the input to position 1 in attende_names
+        for number in range(attende_list[0][1][1]):
+            person_name = input("What is the name of a woman in vip?: ")
+            attende_names[1] += person_name
+
 # for number in range(attende_list[position 0][position 1][position 2]):
 # input asking what is the name of a woman in the grass:
 # add the input to position 2 in attende_names
+        for number in range(attende_list[0][1][2]):
+            person_name = input("What is the name of a woman in grass?: ")
+            attende_names[2] += person_name
+
 # for number in range(attende_list[position 1][position 1][position 0]):
 # input asking what is the name of a man in seated:
 # add the input to position 3 in attende_names
+        for number in range(attende_list[1][1][0]):
+            person_name = input("What is the name of a man in seated?: ")
+            attende_names[3] += person_name
+
 # for number in range(attende_list[position 1][position 1][position 1]):
 # input asking what is the name of a man in VIP:
 # add the input to position 4 in attende_names
+        for number in range(attende_list[1][1][1]):
+            person_name = input("What is the name of a man in vip?: ")
+            attende_names[4] += person_name
+
 # for number in range(attende_list[position 1][position 1][position 2]):
 # input asking what is the name of a man in the grass:
 # add the input to position 5 in attende_names
+        for number in range(attende_list[1][1][2]):
+            person_name = input("What is the name of a man in grass?: ")
+            attende_names[5] += person_name
+
 # Return attende_list, total_tickets, and attende_names and go to artist management and then go to find artist function
+        return attende_list, total_tickets, attende_names
+
 
 
 # find_function
+def find_function(attende_names, artists, schedules):
 # have a while True loop, a placement for continues to go back to
+    while True:
 # have an input asking if they are trying to find an artist, schedules, or attendees.
+        what_find = input("Do you want to find artists, schedules, or a attende?: ")
+
 
 # Attendees
+        if what_find == "attende":
 # have a while true loop, a placement for continues to go back to
+            while True:
 # have an input that asks what the name of the attendee is.
+                find_attendee = input("what is the name of the attendee?: ")
+
+
 # If the input is not in attende_names, continue back to beginning of while true loop
+                if find_attendee not in attende_names[0] and find_attendee not in attende_names[1] and find_attendee not in attende_names[2] and find_attendee not in attende_names[3] and find_attendee not in attende_names[4] and find_attendee not in attende_names[5]:
+                    print("There is nobody with that name")
+                    continue
+
 # If the name is in position 0 in attendee names: print that it is a seated female.
+                if find_attendee in attende_names[0]:
+                    print("That is a female in a seated area.")
+                    continue
+
 # If the name is in position 1 in attendee names: print that it is a VIP female.
+                if find_attendee in attende_names[1]:
+                    print("That is a female in vip area.")
+                    continue
+
 # If the name is in position 2 in attendee names: print that it is a grass-located female.
+                if find_attendee in attende_names[2]:
+                    print("That is a female in the grass area.")
+                    continue
+
 # If the name is in position 3 in attendee names: print that it is a seated male.
+                if find_attendee in attende_names[3]:
+                    print("That is a male in a seated area.")
+                    continue
+
 # If the name is in position 4 in attendee names: print that it is a VIP male.
+                if find_attendee in attende_names[4]:
+                    print("That is a male in vip area.")
+                    continue
+
 # If the name is in position 5 in attendee names: print that it is a grass-located male.
+                if find_attendee in attende_names[5]:
+                    print("That is a male in the grass area.")
+                    continue
+
 
 # Schedules
 # have a while true loop, a placement for continues to go back to
