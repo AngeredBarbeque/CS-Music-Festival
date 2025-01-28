@@ -421,3 +421,4 @@ def find_function(attende_names, artists, schedules):
 ticket_list = store_tickets()
 ticket_list = edit_tickets(ticket_list)
 attende_list, total_tickets, attende_names = store_attendee(ticket_list)
+find_function(attende_names, artists, schedules)
