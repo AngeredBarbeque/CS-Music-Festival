@@ -52,12 +52,12 @@ def store_tickets():
             ticket_list[0] = type_tickets
 
 #If ticket_type is equal to VIP have it be put in position 1 in ticket_list and remove VIP from ticket types
-        if ticket_type == "vip":
+        elif ticket_type == "vip":
             remaining_options.pop(remaining_options.index("vip"))
             ticket_list[1] = type_tickets
 
 #If ticket_type is equal to Grass have it be put in position 2 in ticket_list and remove Grass from ticket types
-        if ticket_type == "grass":
+        elif ticket_type == "grass":
             remaining_options.pop(remaining_options.index("grass"))
             ticket_list[2] = type_tickets
 
