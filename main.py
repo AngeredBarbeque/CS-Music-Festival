@@ -112,6 +112,7 @@ def venues(stages):
 def main(stages):
     print("Hello! Welcome to your music festival management system!")
     while True:
+        #Currently does not link to other functions
         choice = input("What would you like to do?\n1:Manages Artists\n2:Manage Schedules\n3:Manage Venue\n4:Manage Tickets\n5:Search for something\n6:Leave\nChoose:\n")
         if choice == '1':
             #artists()
