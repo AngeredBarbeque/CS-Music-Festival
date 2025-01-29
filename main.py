@@ -41,7 +41,8 @@ def remove_stage():
     while True:
         stage = input("\nWhat is the name of the stage you would like to remove?\n")
         for i in stages:
-            if i[0] == stage:
+            #checks if the entered stage is in the stage list, even if it is not the full name and only one of the words
+            if stage in i[0].split():
                 return i
         print("Sorry, couldn't find that item in your list.")
         break
@@ -51,7 +52,7 @@ def change_stage():
     while True:
         stage = input("\nWhat is the name of the stage you would like to change?\n")
         for i in stages:
-            if i[0] == stage:
+            if stage in i[0].split():
                 stages.remove(i)
                 stage = []
                 equipment = []
