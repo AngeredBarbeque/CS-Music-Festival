@@ -13,19 +13,13 @@ def store_tickets():
 
 #have a while true loop, a placement for continues to go back to
     while True:
-#ticket_type equals an input asking what they want to store, out of the ticket types, Tickets.
-        try: 
-            ticket_type = input("What ticket type do you want to store:", remaining_options[0], "or", remaining_options[1], "or", remaining_options[2])
-        except:
-            try:
-                ticket_type = input("What ticket type do you want to store:", remaining_options[0], "or", remaining_options[1])
-            except:
-                print("You are now storing:", remaining_options[0], "tickets.")
-                ticket_type = remaining_options[0]
+#ticket_type equals an input asking what they want to store, out of the ticket types, Tickets. 
+        print("You are now storing", remaining_options[0], "tickets.")
+        ticket_type = remaining_options[0]
 
 #just making sure that they did a real ticket type
         if ticket_type != "seated" and ticket_type != "vip" and ticket_type != "grass":
-            print("invalid input")
+            print("error")
             continue
 
 #have an input asking what is the amount of 1-day tickets of this type that were bought. 
@@ -74,7 +68,7 @@ def edit_tickets(ticket_list):
 # have a while true loop, a placement for continues to go back to
     while True:
 # have ticket_type be equal to an input asking what they want to store out of Seated, Vip, or Grass Tickets.
-        ticket_type = input("What ticket type do you want to change: seated, vip or grass")
+        ticket_type = input("What ticket type do you want to change: seated, vip or grass?: ")
 
 #just making sure that they did a real ticket type
         if ticket_type != "seated" and ticket_type != "vip" and ticket_type != "grass":
@@ -137,46 +131,49 @@ def store_attendee(ticket_list):
 # have total_tickets equal to total_grass_tickets + total_VIP_tickets + total_seated_tickets 
     total_tickets = [total_grass_tickets + total_vip_tickets + total_seated_tickets, total_grass_tickets, total_vip_tickets, total_grass_tickets]
 
-# have attende_types equal to female, male
-    attende_types = ["female", "male"]
-
+# have attende_genders equal to female, male
+    attende_genders = ["female", "male"]
 # have a while true loop, a placement for continues to go back to
     while True:
-# have gender_type be equal to an input asking if they want to store, out of the attende_types, attendees
-        try:
-            gender_type = input("do you want to store", attende_types[0], "or", attende_types[1], "attendes?: ")
-        except:
-            print("You are storing", attende_types[0], "attendes.")
-            gender_type = attende_types[0]
+# have gender_type be equal to an input asking if they want to store, out of the attende_genders, attendees
+        print("You are now storing", attende_genders[0], "attendes.")
+        gender_type = attende_genders[0]
             
         if gender_type != "female" and gender_type != "male":
             print("invalid input")
             continue
             
-# remove gender_type from attende_types
+# remove gender_type from attende_genders
         if gender_type == "female":
-            attende_types.pop(attende_types.index("female"))
+            attende_genders.pop(attende_genders.index("female"))
+
         elif gender_type == "male":
-            attende_types.pop(attende_types.index("male"))
+            attende_genders.pop(attende_genders.index("male"))
         
 
 # have under_18 equal to an input asking what was the amount of (gender_type) ages 18 and under that went?
+        print("What is the amount of", gender_type, "ages 18 and under that went?: ")
+        under_18 = input()
         try:
-            under_18 = int(input("what is the amount of", gender_type, "ages 18 and under that went?: "))
+            under_18 = int(under_18)
         except:
             print("invalid input")
             continue
             
 # have over_18 equal to an input asking what was the amount of (gender_type) ages 19-49 that went?
+        print("What is the amount of", gender_type, "ages 18 to 49 that went?: ")
+        over_18 = input()
         try:
-            over_18 = int(input("what is the amount of", gender_type, "ages 18 to 49 that went?: "))
+            over_18 = int(over_18)
         except:
             print("invalid input")
             continue
 
 # have over_50 equal to an Input asking what was the amount of (gender_type) ages 50-79 that went?
+        print("what is the amount of", gender_type, "ages 50 and older that went?: ")
+        over_50 = input()
         try:
-            over_50 = int(input("what is the amount of", gender_type, "ages 50 and older that went?: "))
+            over_50 = int(over_50)
         except:
             print("invalid input")
             continue
@@ -186,13 +183,31 @@ def store_attendee(ticket_list):
         age_list = [under_18, over_18, over_50]
 
 # have gender_seated_amount equal to an input asking what was the amount of Seated (gender_type).
-        gender_seated_amount = int(input("what is the amount of seated", gender_type))
+        print("what is the amount of seated", gender_type)
+        gender_seated_amount = input()
+        try:
+            gender_seated_amount = int(gender_seated_amount)
+        except:
+            print("invalid input")
+            continue
 
 # have gender_VIP_amount equal to an input asking what was the amount of VIP (gender_type).
-        gender_vip_amount = int(input("what is the amount of vip", gender_type))
+        print("what is the amount of vip", gender_type)
+        gender_vip_amount = input()
+        try:
+            gender_vip_amount = int(gender_vip_amount)
+        except:
+            print("invalid input")
+            continue
 
 # have gender_grass_amount equal to an input asking what was the amount of grass (gender_type).
-        gender_grass_amount = int(input("what is the amount of grass-seated", gender_type))
+        print("what is the amount of grass seated", gender_type)
+        gender_grass_amount = input()
+        try:
+            gender_grass_amount = int(gender_grass_amount)
+        except:
+            print("invalid input")
+            continue
 
 # have area_amounts equal to gender_seated_amount, gender_VIP_amount, gender_grass_amount 
         area_amounts = [gender_seated_amount, gender_vip_amount, gender_grass_amount]
@@ -210,14 +225,14 @@ def store_attendee(ticket_list):
             total_male_areas = area_amounts[0] + area_amounts[1] + area_amounts[2]
             attende_list[1] = [total_male_areas, area_amounts, age_list]
 
-# If attende_types is not empty, continue back to beginning of while true loop
-        if attende_types != []:
+# If attende_genders is not empty, continue back to beginning of while true loop
+        if attende_genders != []:
             continue
 
 # if total_female + total_male > total_tickets, print that they had too many people and continue
-        if total_female_areas + total_male_areas != total_tickets:
-            attende_types = ["female", "male"]
-            print("You had not the same amount of people as your total tickets amount!")
+        if total_female_areas + total_male_areas > total_tickets[0]:
+            attende_genders = ["female", "male"]
+            print("You had not have more people then your total tickets amount!")
             continue
 
 
@@ -374,10 +389,10 @@ def find_function(attende_names, artists, schedules):
             while True:
 # have an input asking what the name is of the schedule.
                     
-                scedule_finder = input("What is the name of the schedule?: ")
+                schedule_finder = input("What is the name of the schedule?: ")
                 
 # If the input is not in scedules, continue back to beginning
-                if schedule_finder not in scedules:
+                if schedule_finder not in schedules[range(100)]:
                     print("That is not a schedule.")
                     continue
                         
@@ -401,12 +416,12 @@ def find_function(attende_names, artists, schedules):
                 print("This is where the artist information would print.")
                 break
 
-        else:
+        if what_find != "artists" and what_find != "schedules" and what_find != "attende":
             print("invalid input")
             continue
             
 # input asking if they want to find something else and to say yes if they do
-        do_other_search = input("Say yes if you want to search for somthing else: ")
+        do_other_search = input("Say yes if you want to search for something else: ")
 # if yes, continue back to beginning of while true loop
         if do_other_search == "yes":
             continue
@@ -416,9 +431,20 @@ def find_function(attende_names, artists, schedules):
 
 
 
-
+schedules = [["food", "goes from 10am to 6pm on 2.15.25"], ["carnival", "goes from 9am to 6pm on 3.5.25"]]
+artists = [["piano guys","preforms from 11am to 3pm on 1.30.25"], ["imagine dragons", "preforms from 12am to 3pm on 2.5.25"]]
 
 ticket_list = store_tickets()
 ticket_list = edit_tickets(ticket_list)
 attende_list, total_tickets, attende_names = store_attendee(ticket_list)
 find_function(attende_names, artists, schedules)
+print()
+print("ticket list")
+print(ticket_list)
+print()
+print("ticket list")
+print(total_tickets)
+print()
+print("ticket list")
+print(attende_names)
+print()
