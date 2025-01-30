@@ -659,7 +659,7 @@ def main():
         elif choice == '3':
             stages = venues(stages)
         elif choice == '4':
-            tickets_and_attende_function(schedule, artists, attendee_list, attendee_names)
+            attendee_list, total_tickets, attendee_names, ticket_list = tickets_and_attende_function(schedule, artists, attendee_list, attendee_names)
         elif choice == '5':
             find_function(attendee_names, artists, schedule)
         elif choice == '6':
