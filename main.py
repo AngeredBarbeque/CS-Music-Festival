@@ -438,9 +438,9 @@ def tickets_and_attende_function(schedules, artists, attendee_list, attendee_nam
 
         if do_what == "1":
             ticket_list = edit_tickets(ticket_list)
-        elif do_what == '2':
+        elif do_what == "2":
             break
-        else:
+        elif do_what != "1":
             print("Sorry, please enter 1, or 2")
             continue
         return attendee_list, total_tickets, attendee_names, ticket_list
