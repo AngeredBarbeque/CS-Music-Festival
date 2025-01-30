@@ -64,8 +64,11 @@ def edit_tickets(ticket_list):
 # have a while true loop, a placement for continues to go back to
     while True:
 # have ticket_type be equal to an input asking what they want to store out of Seated, Vip, or Grass Tickets.
-        ticket_type = input("What ticket type do you want to change: seated, vip or grass?: ")
+        ticket_type = input("What ticket type do you want to change: seated, vip or grass? (Type leave if you want to leave): ")
 
+        if ticket_type == "leave":
+            return ticket_list
+            
 #just making sure that they did a real ticket type
         if ticket_type != "seated" and ticket_type != "vip" and ticket_type != "grass":
             print("invalid input")
@@ -330,9 +333,11 @@ def find_function(attendee_names, artists, schedules):
 # have a while True loop, a placement for continues to go back to
     while True:
 # have an input asking if they are trying to find an artist, schedules, or attendees.
-        what_find = input("Do you want to find an artist, schedule, or a attendee?: ")
+        what_find = input("Do you want to find an artist, schedule, or a attendee? (type leave if you want to leave): ")
 
-
+        if what_find == "leave":
+            break
+            
 # Attendees
         if what_find == "attendee":
 # have a while true loop, a placement for continues to go back to
