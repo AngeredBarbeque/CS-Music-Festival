@@ -1,8 +1,5 @@
 #Nicholas, Aaron, Alex, and Yenesis Music Festival Project
 #--------------------------------------------------------Start of alex's code---------------------------------------------------------------------------
-print("Welcomne to ticket and attende storage and change!")
-print()
-
 #store tickets function
 def store_tickets():
     ticket_list = ['','','']
@@ -115,9 +112,7 @@ def edit_tickets(ticket_list):
 
         
 # store attendee function
-def store_attendee(ticket_list):
-    attendee_list = ['','']
-    attendee_names = [[],[],[],[],[],[]]
+def store_attendee(ticket_list, attendee_list, attendee_names):
 # have total_seated_tickets equal to ticket_list(position 1 in position 0) + ticket_list(position 2 in position 0)
     total_seated_tickets = ticket_list[0][1] + ticket_list[0][2]
     
@@ -326,7 +321,7 @@ def store_attendee(ticket_list):
                 break
                 
 # Return attendee_list, total_tickets, and attendee_names and go to artist management and then go to find artist function
-        return attendee_list, total_tickets, attendee_names
+        return total_tickets
 
 
 
@@ -434,26 +429,23 @@ def find_function(attendee_names, artists, schedules):
 
 
 
-def tickets_and_attende_function(schedules, artists):
+def tickets_and_attende_function(schedules, artists, attendee_list, attendee_names):
+    print("Welcome to ticket and attende storage and change!")
     ticket_list = store_tickets()
-    attendee_list, total_tickets, attendee_names = store_attendee(ticket_list)
+    total_tickets = store_attendee(ticket_list, attendee_list, attendee_names)
     while True:
-        do_what = input("Do you want to edit tickets (1) or search (2)?: ")
+        do_what = input("Do you want to edit tickets (1), or exit(2)?: ")
 
         if do_what == "1":
             ticket_list = edit_tickets(ticket_list)
-
-        if do_what == "2":
-            find_function(attendee_names, artists, schedules)
-
-        do_again = input("say yes if you want to do somthing else: ")
-
-        if do_again == "yes":
+        elif do_what == '2':
+            break
+        else:
+            print("Sorry, please enter 1, or 2")
             continue
-        
         return attendee_list, total_tickets, attendee_names, ticket_list
 #------------------------------------------------------end of alex's code----------------------------------------------------------------------
-stages = set({})
+#------------------------------------------------------Start of Yenesis's Code-----------------------------------------------------------------
 class Schedule:
     def __init__(self):
         self.schedule = []  # List to store time slot and artist tuples
@@ -470,7 +462,6 @@ class Schedule:
         # Assign an artist to a time slot, check for conflicts
         time_slot = input("Enter the time slot (e.g., 10:00 AM) to assign an artist: ")
         slot_found = False
-
         # Check if the time slot exists and is available
         for i, (slot, artist) in enumerate(self.schedule):
             if slot == time_slot:
@@ -491,7 +482,6 @@ class Schedule:
         # Allow the user to edit an existing schedule (change artist)
         time_slot = input("Enter the time slot (e.g., 10:00 AM) you want to edit: ")
         slot_found = False
-
         for i, (slot, artist) in enumerate(self.schedule):
             if slot == time_slot:
                 slot_found = True
@@ -503,7 +493,6 @@ class Schedule:
                     self.schedule[i] = (slot, new_artist)  # Update the tuple with new artist
                     print(f"Artist for {time_slot} updated to {new_artist}.")
                 return
-        
         if not slot_found:
             print("This time slot does not exist.")
 
@@ -518,9 +507,7 @@ class Schedule:
             print(f"{slot}: {artist_name}")
 
 # Main program flow
-def schedule_management():
-    schedule = Schedule()
-
+def schedule_management(schedule):
     while True:
         print("\nMenu:")
         print("1. Create Schedule")
@@ -540,9 +527,12 @@ def schedule_management():
         elif choice == '4':
             schedule.view_schedule()
         elif choice == '5':
-            main()
+            return
         else:
             print("Invalid choice. Please try again.")
+
+#------------------------------------------------------------End of Yenesis's Code--------------------------------------------------------------
+#-----------------------------------------------------------Begining of Nick's Code-------------------------------------------------------------
 
 #Prints the stages in a visually appealing way.
 def stage_display(stages):
@@ -580,7 +570,7 @@ def add_stage():
         return stage
 
 #Removes a stage
-def remove_stage():
+def remove_stage(stages):
     while True:
         stage = input("\nWhat is the name of the stage you would like to remove?\n")
         for i in stages:
@@ -591,7 +581,7 @@ def remove_stage():
         break
 
 #"changes" a stage by removing the stage and adding a new one.
-def change_stage():
+def change_stage(stages):
     while True:
         stage = input("\nWhat is the name of the stage you would like to change?\n")
         for i in stages:
@@ -633,12 +623,12 @@ def venues(stages):
                 pass
         elif choice == '2':
             try:
-                stages.remove(remove_stage())
+                stages.remove(remove_stage(stages))
             except:
                 pass
         elif choice == '3':
             #Checks to avoid adding a non-existent item to the stages list
-            isNull = change_stage()
+            isNull = change_stage(stages)
             try:
                 isNull[0]
             except:
@@ -646,34 +636,35 @@ def venues(stages):
             else:
                 stages.add(isNull)
         elif choice == '4':
-            #main()
-            break
+            return stages
         else:
             print("Sorry, enter 1, 2, 3, or 4 to continue.")
             continue
 
 #Allows the user to access the other functions
-def main(stages):
+def main():
+    stages = set({})
+    schedule = Schedule()
+    artists = []
+    attendee_list = ['','']
+    attendee_names = [[],[],[],[],[],[]]
     print("Hello! Welcome to your music festival management system!")
     while True:
-        #Currently does not link to other functions
         choice = input("What would you like to do?\n1:Manages Artists\n2:Manage Schedules\n3:Manage Venue\n4:Manage Tickets\n5:Search for something\n6:Leave\nChoose:\n")
         if choice == '1':
             #artists()
             break
         elif choice == '2':
-            schedule_management()
+            schedule_management(schedule)
         elif choice == '3':
-            venues()
+            stages = venues(stages)
         elif choice == '4':
-            tickets_and_attende_function(schedules, artists)
-            break
+            tickets_and_attende_function(schedule, artists, attendee_list, attendee_names)
         elif choice == '5':
-            find_function(attendee_names, artists, schedules)
-            break
+            find_function(attendee_names, artists, schedule)
         elif choice == '6':
             print("Goodbye!")
             exit()
         else:
             print("Sorry, please enter 1, 2, 3, 4, 5, or 6.")
-venues(stages)
+main()
