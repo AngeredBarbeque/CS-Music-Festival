@@ -329,7 +329,7 @@ def store_attendee(ticket_list, attendee_list, attendee_names):
 
 
 # find_function
-def find_function(attendee_names, artists, schedules):
+def find_function(attendee_names, artists, stages):
 # have a while True loop, a placement for continues to go back to
     while True:
 # have an input asking if they are trying to find an artist, schedules, or attendees.
@@ -388,20 +388,26 @@ def find_function(attendee_names, artists, schedules):
             while True:
 # have an input asking what the name is of the schedule.
                     
-                schedule_finder = input("What is the name of the schedule?: ")
+                schedule_finder = input("What is the name of the stage?: ")
                 
 # If the input is not in scedules, continue back to beginning
                 schedule_found = False
-                for item in schedules:
+                item_list = []
+                for item in stages:
                     if schedule_finder == item[0]:
+                        for i in item[1]:
+                            item_list.append(i)
                         schedule_found = True
 
                 if schedule_found == False:
-                    print("That is not a schedule.")
+                    print("That is not a stage.")
                     continue
                 
+                
 # print schedule information
-                print("This is where schedule information would print.")
+                print("That stage items are:")
+                for item in item_list:
+                    print(item)
                 break
 
 # Artists
@@ -434,7 +440,7 @@ def find_function(attendee_names, artists, schedules):
 
 
 
-def tickets_and_attende_function(schedules, artists, attendee_list, attendee_names):
+def tickets_and_attende_function(attendee_list, attendee_names):
     print("Welcome to ticket and attende storage and change!")
     ticket_list = store_tickets()
     total_tickets = store_attendee(ticket_list, attendee_list, attendee_names)
