@@ -517,43 +517,6 @@ class Schedule:
         except Exception as e:
             print(f"An error occurred: {e}")
 
-        time_slot = input("Enter the time slot (e.g., 10:00 AM) to assign an artist: ")
-        slot_found = False
-        # Check if the time slot exists and is available
-        for i, (slot, artist) in enumerate(self.schedule):
-            if slot == time_slot:
-                slot_found = True
-                if artist is None:
-                    artist = input(f"Enter the artist name to assign to {time_slot}: ")
-                    self.schedule[i] = (slot, artist)  # Update the tuple
-                    print(f"Artist {artist} assigned to {time_slot}.")
-                    return
-                else:
-                    print(f"Conflict! The time slot {time_slot} is already occupied by {artist}.")
-                    return
-        
-        if not slot_found:
-            print("This time slot does not exist.")
-
-    def edit_schedule(self):
-        # Allow the user to edit an existing schedule (change artist)
-        time_slot = input("Enter the time slot (e.g., 10:00 AM) you want to edit: ")
-        slot_found = False
-        for i, (slot, artist) in enumerate(self.schedule):
-            if slot == time_slot:
-                slot_found = True
-                if artist is None:
-                    print(f"No artist assigned to {time_slot}.")
-                else:
-                    current_artist = artist
-                    new_artist = input(f"Current artist for {time_slot} is {current_artist}. Enter the new artist name: ")
-                    self.schedule[i] = (slot, new_artist)  # Update the tuple with new artist
-                    print(f"Artist for {time_slot} updated to {new_artist}.")
-                return
-        if not slot_found:
-            print("This time slot does not exist.")
-
-
     def view_schedule(self):
         # Display the current schedule
         if not self.schedule:
@@ -598,7 +561,9 @@ class Schedule:
 
 
 # Main program flow
-def schedule_management(schedule):
+def main():
+    schedule = Schedule()
+
     while True:
         print("\nMenu:")
         print("1. Create Schedule")
@@ -626,17 +591,6 @@ def schedule_management(schedule):
         elif choice == '7':
             print("Exiting the program.")
             break
-        else:
-            print("Invalid choice. Please try again.")
-
-
-# Run the main program
-if __name__ == "__main__":
-    main()
-
-    
-
-            return
         else:
             print("Invalid choice. Please try again.")
 
