@@ -1,0 +1,1 @@
+for i, (slot, artist) in enumerate(self.schedule):
