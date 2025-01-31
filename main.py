@@ -324,7 +324,7 @@ def store_attendee(ticket_list, attendee_list, attendee_names):
                 break
                 
 # Return attendee_list, total_tickets, and attendee_names and go to artist management and then go to find artist function
-        return total_tickets
+        return total_tickets, attendee_list, attende_names
 
 
 
@@ -441,9 +441,9 @@ def find_function(attendee_names, artists, stages):
 
 
 def tickets_and_attende_function(attendee_list, attendee_names):
-    print("Welcome to ticket and attende storage and change!")
+    print("Welcome to ticket and attende storage/change!")
     ticket_list = store_tickets()
-    total_tickets = store_attendee(ticket_list, attendee_list, attendee_names)
+    total_tickets, attendee_list, attende_names = store_attendee(ticket_list, attendee_list, attendee_names)
     while True:
         do_what = input("Do you want to edit tickets (1), or exit(2)?: ")
 
@@ -454,7 +454,7 @@ def tickets_and_attende_function(attendee_list, attendee_names):
         elif do_what != "1":
             print("Sorry, please enter 1, or 2")
             continue
-        return attendee_list, total_tickets, attendee_names, ticket_list
+        return attendee_names
 #------------------------------------------------------end of alex's code----------------------------------------------------------------------
 #------------------------------------------------------Start of Yenesis's Code-----------------------------------------------------------------
 class Schedule:
@@ -656,7 +656,6 @@ def venues(stages):
 def main():
     stages = set({})
     schedule = Schedule()
-    artists = []
     attendee_list = ['','']
     attendee_names = [[],[],[],[],[],[]]
     print("Hello! Welcome to your music festival management system!")
@@ -670,7 +669,7 @@ def main():
         elif choice == '3':
             stages = venues(stages)
         elif choice == '4':
-            attendee_list, total_tickets, attendee_names, ticket_list = tickets_and_attende_function(schedule, artists, attendee_list, attendee_names)
+            attendee_names = tickets_and_attende_function(schedule, attendee_list, attendee_names)
         elif choice == '5':
             find_function(attendee_names, artists, schedule)
         elif choice == '6':
