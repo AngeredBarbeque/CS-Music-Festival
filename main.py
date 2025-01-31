@@ -629,17 +629,6 @@ def schedule_management(schedule):
         else:
             print("Invalid choice. Please try again.")
 
-
-# Run the main program
-if __name__ == "__main__":
-    main()
-
-    
-
-            return
-        else:
-            print("Invalid choice. Please try again.")
-
 #------------------------------------------------------------End of Yenesis's Code--------------------------------------------------------------
 #-----------------------------------------------------------Begining of Aaron's code------------------------------------------------------------
 
