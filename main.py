@@ -671,7 +671,7 @@ def main():
         elif choice == '4':
             attendee_names = tickets_and_attende_function(schedule, attendee_list, attendee_names)
         elif choice == '5':
-            find_function(attendee_names, artists, schedule)
+            find_function(attendee_names, artists, stages)
         elif choice == '6':
             print("Goodbye!")
             exit()
