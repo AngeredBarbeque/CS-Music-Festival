@@ -543,6 +543,57 @@ def schedule_management(schedule):
             print("Invalid choice. Please try again.")
 
 #------------------------------------------------------------End of Yenesis's Code--------------------------------------------------------------
+#-----------------------------------------------------------Begining of Aaron's code------------------------------------------------------------
+
+# A function to add artist name, genre, and performance duration
+def add_artist(artists):
+    name = input("Enter artist name: ")
+    genre = input("Enter artist genre: ")
+    duration = input("Enter performance duration in mintues: ")
+    artists.append([name, genre, duration])
+    return artists
+
+# A function that requires the name of the artist in order to remove all information
+def remove_artist(artists):
+    name = input("Enter artist name that you want to remove: ")
+    artists = [artist for artist in artists if artist[0] != name]
+    return artists
+
+# Update new artist details by entering the name of the artist
+def update_artist(artists):
+    name = input("Enter artist name to update: ")
+    for artist in artists:
+        if artist[0] == name:
+            artist[1] = input("Enter new genre (or press Enter to keep now): ") or artist[1]
+            artist[2] = input("Enter new duration (or press Enter to keep now): ") or artist[2]
+            break
+    return artists
+
+# A function to print/show the lineup
+def show_lineup(artists):
+    print("Lineup:")
+    for artist in artists:
+        print(f"name: {artist[0]}, Genre: {artist[1]}, duration: {artist[2]}")
+
+# A function to handle user's choice, what to do: add/remove/update or print lineup
+def user_choice(artists):
+    while True:
+        choice = input("\n1 add Artist\n2 Remove Artist\n3 Update Artist\n4 Show Lineup\n5 Exit\nPick an option: ")
+        if choice == "1":
+            artists = add_artist(artists)
+        elif choice == "2":
+            artists = remove_artist(artists)
+        elif choice == "3":
+            artists = update_artist(artists)
+        elif choice == "4":
+            show_lineup(artists)
+        elif choice == "5":
+            break
+        else:
+            print("Wrong choice, try again")
+    return artists
+
+#-----------------------------------------------------------End of Aaron's code-----------------------------------------------------------------
 #-----------------------------------------------------------Begining of Nick's Code-------------------------------------------------------------
 
 #Prints the stages in a visually appealing way.
@@ -654,6 +705,7 @@ def venues(stages):
 
 #Allows the user to access the other functions
 def main():
+    artists = []
     stages = set({})
     schedule = Schedule()
     attendee_list = ['','']
@@ -662,8 +714,7 @@ def main():
     while True:
         choice = input("What would you like to do?\n1:Manages Artists\n2:Manage Schedules\n3:Manage Venue\n4:Manage Tickets\n5:Search for something\n6:Leave\nChoose:\n")
         if choice == '1':
-            #artists()
-            break
+            artists = user_choice(artists)
         elif choice == '2':
             schedule_management(schedule)
         elif choice == '3':
