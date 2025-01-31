@@ -1,5 +1,4 @@
 #Nicholas, Aaron, Alex, and Yenesis Music Festival Project
-stages = set({})
 class Schedule:
     def __init__(self):
         self.schedule = []  # List to store time slot, artist, and stage tuples
@@ -104,7 +103,7 @@ class Schedule:
 
 
 # Main program flow
-def schedule_management():
+def main():
     schedule = Schedule()
 
     while True:
