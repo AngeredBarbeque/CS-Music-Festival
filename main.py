@@ -333,7 +333,7 @@ def find_function(attendee_names, artists, stages):
 # have a while True loop, a placement for continues to go back to
     while True:
 # have an input asking if they are trying to find an artist, schedules, or attendees.
-        what_find = input("Do you want to find an artist, schedule, or a attendee? (type leave if you want to leave): ")
+        what_find = input("Do you want to find an artist, stage, or a attendee? (type leave if you want to leave): ")
 
         if what_find == "leave":
             break
@@ -383,7 +383,7 @@ def find_function(attendee_names, artists, stages):
 
 
 # Schedules
-        if what_find == "schedule":
+        if what_find == "stage":
 # have a while true loop, a placement for continues to go back to
             while True:
 # have an input asking what the name is of the schedule.
