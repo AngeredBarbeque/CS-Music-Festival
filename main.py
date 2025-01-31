@@ -260,7 +260,7 @@ def store_attendee(ticket_list, attendee_list, attendee_names):
                 except:
                     print("invalid input")
                     continue
-                attendee_names[0] += [person_name, person_age]
+                attendee_names[1] += [person_name, person_age]
                 break
 
 # for number in range(attendee_list[position 0][position 1][position 2]):
@@ -275,7 +275,7 @@ def store_attendee(ticket_list, attendee_list, attendee_names):
                 except:
                     print("invalid input")
                     continue
-                attendee_names[0] += [person_name, person_age]
+                attendee_names[2] += [person_name, person_age]
                 break
                 
 # for number in range(attendee_list[position 1][position 1][position 0]):
@@ -290,7 +290,7 @@ def store_attendee(ticket_list, attendee_list, attendee_names):
                 except:
                     print("invalid input")
                     continue
-                attendee_names[0] += [person_name, person_age]
+                attendee_names[3] += [person_name, person_age]
                 break
                 
 # for number in range(attendee_list[position 1][position 1][position 1]):
@@ -305,7 +305,7 @@ def store_attendee(ticket_list, attendee_list, attendee_names):
                 except:
                     print("invalid input")
                     continue
-                attendee_names[0] += [person_name, person_age]
+                attendee_names[4] += [person_name, person_age]
                 break
                 
 # for number in range(attendee_list[position 1][position 1][position 2]):
@@ -320,11 +320,11 @@ def store_attendee(ticket_list, attendee_list, attendee_names):
                 except:
                     print("invalid input")
                     continue
-                attendee_names[0] += [person_name, person_age]
+                attendee_names[5] += [person_name, person_age]
                 break
                 
 # Return attendee_list, total_tickets, and attendee_names and go to artist management and then go to find artist function
-        return total_tickets, attendee_list, attende_names
+        return attendee_list, attendee_names
 
 
 
@@ -443,7 +443,7 @@ def find_function(attendee_names, artists, stages):
 def tickets_and_attende_function(attendee_list, attendee_names):
     print("Welcome to ticket and attende storage/change!")
     ticket_list = store_tickets()
-    total_tickets, attendee_list, attende_names = store_attendee(ticket_list, attendee_list, attendee_names)
+    attendee_list, attendee_names = store_attendee(ticket_list, attendee_list, attendee_names)
     while True:
         do_what = input("Do you want to edit tickets (1), or exit(2)?: ")
 
@@ -669,7 +669,7 @@ def main():
         elif choice == '3':
             stages = venues(stages)
         elif choice == '4':
-            attendee_names = tickets_and_attende_function(schedule, attendee_list, attendee_names)
+            attendee_names = tickets_and_attende_function(attendee_list, attendee_names)
         elif choice == '5':
             find_function(attendee_names, artists, stages)
         elif choice == '6':
