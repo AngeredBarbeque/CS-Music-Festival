@@ -333,7 +333,7 @@ def find_function(attendee_names, artists, stages):
 # have a while True loop, a placement for continues to go back to
     while True:
 # have an input asking if they are trying to find an artist, schedules, or attendees.
-        what_find = input("Do you want to find an artist, stage, or a attendee? (type leave if you want to leave): ")
+        what_find = input("Do you want to find an artist, stage, schedule, or a attendee? (type leave if you want to leave): ")
 
         if what_find == "leave":
             break
@@ -343,8 +343,10 @@ def find_function(attendee_names, artists, stages):
 # have a while true loop, a placement for continues to go back to
             while True:
 # have an input that asks what the name of the attendee is.
-                find_attendee = input("what is the name of the attendee?: ")
+                find_attendee = input("what is the name of the attendee? (type leave if you want to leave): ")
 
+                if find_attendee == "leave":
+                    break
 
 # If the input is not in attendee_names, continue back to beginning of while true loop
                 if find_attendee not in attendee_names[0] and find_attendee not in attendee_names[1] and find_attendee not in attendee_names[2] and find_attendee not in attendee_names[3] and find_attendee not in attendee_names[4] and find_attendee not in attendee_names[5]:
@@ -404,7 +406,8 @@ def find_function(attendee_names, artists, stages):
                     continue
                 
                 
-# print schedule information
+# print stage information
+
                 print("That stage items are:")
                 for item in item_list:
                     print(item)
@@ -418,15 +421,28 @@ def find_function(attendee_names, artists, stages):
                 artist_finder = input("What is the name of the artist?: ")
                     
 # If the input is not in artists, continue back to beginning of while true loop
-                if artist_finder not in artists:
-                    print("That artist is not here")
+                artist_found = False
+
+                for item in artists:
+                    if artist_finder in item:
+                        artist_info = item
+                        artist_found = True
+
+                if artist_found == False:
+                    print("That is not a artist.")
                     continue
-                        
+
 # print artist information
-                print("This is where the artist information would print.")
+                print("Artist Genre:", artist_info[1])
+                print("Artist preformance duration:", artist_info[2])
                 break
 
-        if what_find != "artist" and what_find != "schedule" and what_find != "attende":
+#supercalifragilistic needs to be fixed
+        if what_find == "schedule":
+            input("What is the schedule name?: ")
+
+
+        if what_find != "artist" and what_find != "stage" and what_find != "attendee"and what_find != "schedule":
             print("invalid input")
             continue
             
@@ -808,6 +824,7 @@ def main():
             stages = venues(stages)
         elif choice == '4':
             attendee_names = tickets_and_attende_function(attendee_list, attendee_names)
+            print (attendee_names)
         elif choice == '5':
             find_function(attendee_names, artists, stages)
         elif choice == '6':
