@@ -329,7 +329,7 @@ def store_attendee(ticket_list, attendee_list, attendee_names):
 
 
 # find_function
-def find_function(attendee_names, artists, stages):
+def find_function(attendee_names, artists, stages, schedule):
 # have a while True loop, a placement for continues to go back to
     while True:
 # have an input asking if they are trying to find an artist, schedules, or attendees.
@@ -437,9 +437,10 @@ def find_function(attendee_names, artists, stages):
                 print("Artist preformance duration:", artist_info[2])
                 break
 
-#supercalifragilistic needs to be fixed
+#
         if what_find == "schedule":
-            input("What is the schedule name?: ")
+            name = input("What is the name of the artist or stage asosciated with the schedule?:\n")
+            schedule.find(name)
 
 
         if what_find != "artist" and what_find != "stage" and what_find != "attendee"and what_find != "schedule":
@@ -474,8 +475,15 @@ def tickets_and_attende_function(attendee_list, attendee_names):
 #------------------------------------------------------end of alex's code----------------------------------------------------------------------
 #------------------------------------------------------Start of Yenesis's Code-----------------------------------------------------------------
 class Schedule:
+
     def __init__(self):
         self.schedule = []  # List to store time slot, artist, and stage tuples
+    
+    def find(self, name):
+        for i in self.schedule:
+            for item in i:
+                if item == name:
+                    print(f'The schedule is {i[0]} with the artist {i[1]}, on stage {i[2]}.')
 
     def create_schedule(self):
         # Create the schedule by allowing the user to input time slots
@@ -577,9 +585,7 @@ class Schedule:
 
 
 # Main program flow
-def main():
-    schedule = Schedule()
-
+def schedule_management(schedule):
     while True:
         print("\nMenu:")
         print("1. Create Schedule")
@@ -791,7 +797,7 @@ def main():
             attendee_names = tickets_and_attende_function(attendee_list, attendee_names)
             print (attendee_names)
         elif choice == '5':
-            find_function(attendee_names, artists, stages)
+            find_function(attendee_names, artists, stages, schedule)
         elif choice == '6':
             print("Goodbye!")
             exit()
